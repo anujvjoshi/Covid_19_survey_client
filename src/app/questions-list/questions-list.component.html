@@ -1,0 +1,24 @@
+ <div class="container">
+ <form  #myForm="ngForm">
+  <div class="form-group" *ngFor="let i = index;let formDetails of formDetails| async" >
+
+    <div ngModelGroup="{{formDetails.questionId}}">
+    <div>{{i+1}}. <span [innerHTML]="formDetails.question" style="font-weight: 600;"></span></div>
+
+      <!-- option 1-->
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" id="{{formDetails.questionId}}1" required name="{{formDetails.questionId}}" value="{{formDetails.option1Id}}" (click)="submitAns(formDetails.questionId,formDetails.option1Id)" ngModel>
+        <label class="custom-control-label" for="{{formDetails.questionId}}1">{{formDetails.option1}}</label>
+      </div>
+
+      <!-- option 2-->
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" id="{{formDetails.questionId}}2" required name="{{formDetails.questionId}}"  value="{{formDetails.option2Id}}" (click)="submitAns(formDetails.questionId,formDetails.option2Id)" ngModel>
+        <label class="custom-control-label" for="{{formDetails.questionId}}2">{{formDetails.option2}}</label>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success"  [disabled]="!myForm.form.valid" (click)="onSubmit()">Submit</button>
+</form>
+</div>
